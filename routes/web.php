@@ -4,16 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomepageController;
 use App\Http\Requests\Admin\RecipeRequest;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+////////
 
 Route::get('/', [\App\Http\Controllers\Frontend\HomepageController::class,'index'])->name('homepage');
 Route::get('/recipe', [\App\Http\Controllers\Frontend\RecipeController::class,'index'])->name('recipe');
