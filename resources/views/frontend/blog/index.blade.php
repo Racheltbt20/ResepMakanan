@@ -9,7 +9,7 @@
         <div class="row h-100 align-items-center">
           <div class="col-12">
             <div class="breadcumb-text text-center">
-              <h2>Blog</h2>
+              <h2>{{ isset($category) ? $category->title : "Blog" }}</h2>
             </div>
           </div>
         </div>
@@ -24,79 +24,26 @@
           <div class="col-12 col-lg-8">
             <div class="blog-posts-area">
               <!-- Single Blog Area -->
-              <div class="single-blog-area mb-80">
-                <!-- Thumbnail -->
-                <div class="blog-thumbnail">
-                  <img src="img/blog-img/1.jpg" alt="" />
+              @foreach ($posts as $post)    
+                <div class="single-blog-area mb-80">
+                  <!-- Thumbnail -->
+                  <div class="blog-thumbnail">
+                    <img src="{{ Storage::url($post->banner) }}" alt="" />
+                  </div>
+                  <!-- Content -->
+                  <div class="blog-content">
+                    <a href="{{ route('blog.show', $post->slug) }}" class="post-title"
+                      >{{ $post->title }}</a
+                    >
+                    <p>
+                      {{ $post->excerpt }}
+                    </p>
+                    <a href="{{ route('blog.show', $post->slug) }}" class="btn delicious-btn mt-30"
+                      >Read More</a
+                    >
+                  </div>
                 </div>
-                <!-- Content -->
-                <div class="blog-content">
-                  <a href="single-blog.html" class="post-title"
-                    >How to find amazing restaurants in your city</a
-                  >
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum nec varius dui. Suspendisse potenti. Vestibulum
-                    ac pellentesque tortor. Aenean congue sed metus in iaculis.
-                    Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget
-                    lobortis purus. Orci varius natoque penatibus et magnis dis
-                    parturient montes, nascetur ridiculus mus.
-                  </p>
-                  <a href="single-blog.html" class="btn delicious-btn mt-30"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <!-- Single Blog Area -->
-              <div class="single-blog-area mb-80">
-                <!-- Thumbnail -->
-                <div class="blog-thumbnail">
-                  <img src="img/blog-img/2.jpg" alt="" />
-                </div>
-                <!-- Content -->
-                <div class="blog-content">
-                  <a href="single-blog.html" class="post-title"
-                    >10 tips to live a healty life</a
-                  >
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum nec varius dui. Suspendisse potenti. Vestibulum
-                    ac pellentesque tortor. Aenean congue sed metus in iaculis.
-                    Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget
-                    lobortis purus. Orci varius natoque penatibus et magnis dis
-                    parturient montes, nascetur ridiculus mus.
-                  </p>
-                  <a href="single-blog.html" class="btn delicious-btn mt-30"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <!-- Single Blog Area -->
-              <div class="single-blog-area mb-80">
-                <!-- Thumbnail -->
-                <div class="blog-thumbnail">
-                  <img src="img/blog-img/3.jpg" alt="" />
-                </div>
-                <!-- Content -->
-                <div class="blog-content">
-                  <a href="single-blog.html" class="post-title"
-                    >5 Tips on how to cook the best hamburger</a
-                  >
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum nec varius dui. Suspendisse potenti. Vestibulum
-                    ac pellentesque tortor. Aenean congue sed metus in iaculis.
-                    Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget
-                    lobortis purus. Orci varius natoque penatibus et magnis dis
-                    parturient montes, nascetur ridiculus mus.
-                  </p>
-                  <a href="single-blog.html" class="btn delicious-btn mt-30"
-                    >Read More</a
-                  >
-                </div>
-              </div>
+              @endforeach
             </div>
 
             <nav aria-label="Page navigation example">
@@ -116,11 +63,9 @@
               <div class="single-widget mb-80">
                 <h6>Categories</h6>
                 <ul class="list">
-                  <li><a href="#">Restaurants</a></li>
-                  <li><a href="#">Food &amp; Drinks</a></li>
-                  <li><a href="#">Vegans</a></li>
-                  <li><a href="#">Events &amp; Lifestyle</a></li>
-                  <li><a href="#">Uncategorized</a></li>
+                  @foreach ($categories as $category)    
+                    <li><a href="{{ route('blog.category', $category->slug) }}">{{ $category->title }}</a></li>
+                  @endforeach
                 </ul>
               </div>
 

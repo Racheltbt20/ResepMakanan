@@ -37,7 +37,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <form action="#" method="post">
+            <form action="{{ url('recipe') }}" method="get">
               <input
                 type="search"
                 name="search"

@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\HomepageController;
 use App\Http\Requests\Admin\RecipeRequest;
+use App\Http\Controllers\Frontend\HomepageController;
 
 ////////
 
@@ -10,7 +11,8 @@ Route::get('/', [\App\Http\Controllers\Frontend\HomepageController::class,'index
 Route::get('/recipe', [\App\Http\Controllers\Frontend\RecipeController::class,'index'])->name('recipe');
 Route::get('/recipe/{recipe:slug}', [\App\Http\Controllers\Frontend\RecipeController::class,'show'])->name('recipe.show');
 Route::get('/blog', [\App\Http\Controllers\Frontend\BlogController::class,'index'])->name('blog');
-Route::get('/blog/{slug}', [\App\Http\Controllers\Frontend\BlogController::class,'show'])->name('blog.show');
+Route::get('/blog/{post:slug}', [\App\Http\Controllers\Frontend\BlogController::class,'show'])->name('blog.show');
+Route::get('/blog/category/{category:slug}', [\App\Http\Controllers\Frontend\BlogController::class,'category'])->name('blog.category');
 Route::get('/about', [\App\Http\Controllers\Frontend\AboutController::class,'index'])->name('about');
 Route::get('/contact', [\App\Http\Controllers\Frontend\ContactController::class,'index'])->name('contact');
 

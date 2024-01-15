@@ -9,7 +9,7 @@
         <div class="row h-100 align-items-center">
           <div class="col-12">
             <div class="breadcumb-text text-center">
-              <h2>Blog</h2>
+              <h2>{{ $post->title }}</h2>
             </div>
           </div>
         </div>
@@ -27,20 +27,15 @@
               <div class="single-blog-area mb-80">
                 <!-- Thumbnail -->
                 <div class="blog-thumbnail">
-                  <img src="img/blog-img/1.jpg" alt="" />
+                  <img src="{{ Storage::url($post->banner) }}" alt="{{ $post->title }}" />
                 </div>
                 <!-- Content -->
                 <div class="blog-content">
                   <h1 class="post-title my-3">
-                    How to find amazing restaurants in your city
+                    {{ $post->title }}
                   </h1>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum nec varius dui. Suspendisse potenti. Vestibulum
-                    ac pellentesque tortor. Aenean congue sed metus in iaculis.
-                    Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget
-                    lobortis purus. Orci varius natoque penatibus et magnis dis
-                    parturient montes, nascetur ridiculus mus.
+                    {{ $post->description }}
                   </p>
                 </div>
               </div>
@@ -53,11 +48,9 @@
               <div class="single-widget mb-80">
                 <h6>Categories</h6>
                 <ul class="list">
-                  <li><a href="#">Restaurants</a></li>
-                  <li><a href="#">Food &amp; Drinks</a></li>
-                  <li><a href="#">Vegans</a></li>
-                  <li><a href="#">Events &amp; Lifestyle</a></li>
-                  <li><a href="#">Uncategorized</a></li>
+                  @foreach ($categories as $category)  
+                    <li><a href="#">{{ $category->title }}</a></li>
+                  @endforeach
                 </ul>
               </div>
 
